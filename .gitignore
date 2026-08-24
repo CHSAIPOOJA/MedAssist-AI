@@ -195,6 +195,11 @@ cython_debug/
 .abstra/
 
 # Visual Studio Code
+.vscode/
+
+# Frontend dependencies and build output
+frontend/node_modules/
+frontend/dist/
 #   Visual Studio Code specific template is maintained in a separate VisualStudioCode.gitignore 
 #   that can be found at https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
 #   and can be added to the global gitignore or merged into this file. However, if you prefer, 

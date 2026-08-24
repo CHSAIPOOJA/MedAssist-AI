@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap");
+
+:root { color: #172a2b; background: #f3f0e8; font-family: "Manrope", sans-serif; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+button, input { font: inherit; }
+.page-shell { min-height: 100vh; }
+.login-shell { display: grid; grid-template-columns: minmax(0, 1fr) 38%; background: #f3f0e8; }
+.login-panel { padding: 11vh 12vw; max-width: 760px; }
+.brand-mark { display: grid; place-items: center; width: 42px; height: 42px; background: #e36f4d; color: #fffaf2; border-radius: 50%; font-size: 30px; line-height: 1; margin-bottom: 70px; }
+.brand-mark.small { width: 28px; height: 28px; margin: 0; font-size: 20px; }
+.eyebrow { color: #ba5b3f; font: 500 11px/1 "DM Mono", monospace; letter-spacing: 1.8px; margin: 0 0 24px; }
+h1, h2, p { margin-top: 0; }
+h1 { font-size: clamp(42px, 5vw, 72px); line-height: 1.04; letter-spacing: 0; margin-bottom: 22px; }
+h1 span { color: #3d7774; }
+.muted, .intro { color: #647374; line-height: 1.7; max-width: 440px; }
+.form-stack { display: grid; gap: 18px; max-width: 420px; margin-top: 42px; }
+label { color: #526566; font-size: 13px; font-weight: 700; display: grid; gap: 9px; }
+input:not([type="file"]) { background: transparent; border: 0; border-bottom: 1px solid #bfc8bf; color: #172a2b; outline: none; padding: 13px 0; }
+input:focus { border-color: #3d7774; }
+.primary-button { border: 0; background: #173f3e; color: #fffaf2; cursor: pointer; padding: 16px 21px; text-align: left; font-weight: 800; transition: background .2s, transform .2s; }
+.primary-button:hover { background: #265e5b; transform: translateY(-2px); }
+.primary-button:disabled { cursor: wait; opacity: .65; transform: none; }
+.primary-button span { float: right; font-size: 20px; line-height: 13px; }
+.fine-print { color: #91a09c; font: 11px "DM Mono", monospace; margin-top: 32px; }
+.error-message { color: #b44232; font-size: 13px; margin: 0; }
+.login-aside { background: #3d7774; color: #f7f2e9; padding: 11vh 8vw; display: flex; flex-direction: column; justify-content: space-between; }
+.login-aside span { font: 12px "DM Mono", monospace; }
+.login-aside p { font-size: clamp(38px, 5vw, 70px); line-height: 1.05; margin: 0; }
+.login-aside strong { color: #f2aa73; font-weight: 500; }
+.dashboard-shell { background: #f3f0e8; }
+.topbar { align-items: center; border-bottom: 1px solid #d5d8cd; display: flex; justify-content: space-between; padding: 25px 6vw; }
+.wordmark { align-items: center; display: flex; font-weight: 800; gap: 10px; }
+.logout-button { background: none; border: 0; color: #647374; cursor: pointer; font-size: 13px; }
+.dashboard-content { margin: 0 auto; max-width: 900px; padding: 11vh 6vw; }
+.intro { margin-bottom: 44px; }
+.upload-form { max-width: 650px; }
+.drop-zone { align-items: center; border: 1px dashed #9eafa8; cursor: pointer; display: grid; gap: 8px; justify-items: center; padding: 48px 24px; text-align: center; transition: background .2s, border-color .2s; }
+.drop-zone:hover { background: #e8ebe1; border-color: #3d7774; }
+.drop-zone input { display: none; }
+.drop-zone strong { color: #173f3e; font-size: 16px; max-width: 100%; overflow-wrap: anywhere; }
+.drop-zone span:last-child { color: #82918c; font: 11px "DM Mono", monospace; }
+.upload-icon { color: #e36f4d; font-size: 34px; }
+.extract-button { margin-top: 18px; width: 100%; }
+.result-section { border-top: 1px solid #d5d8cd; margin-top: 72px; padding-top: 30px; }
+.result-heading h2 { font-size: 28px; margin-bottom: 24px; }
+pre { background: #e8ebe1; color: #314848; font: 13px/1.7 "DM Mono", monospace; max-height: 500px; overflow: auto; padding: 24px; white-space: pre-wrap; }
+@media (max-width: 720px) { .login-shell { display: block; } .login-panel { padding: 9vh 9vw 7vh; } .brand-mark { margin-bottom: 48px; } .login-aside { min-height: 240px; padding: 32px 9vw; } .login-aside p { font-size: 42px; } .dashboard-content { padding-top: 8vh; } h1 { font-size: 46px; } }
