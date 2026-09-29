@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedAssist AI</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="app-header">
+  <div class="wrap row">
+    <div class="brand">MedAssist AI</div>
+    <div class="who">
+      <span id="whoName"></span>
+      <button class="btn secondary" id="logoutBtn" type="button">Sign out</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="tabs">
+    <div class="tab active" data-panel="panel-dashboard">Overview</div>
+    <div class="tab" data-panel="panel-reports">Reports</div>
+    <div class="tab" data-panel="panel-reminders">Medicines</div>
+    <div class="tab" data-panel="panel-specialist">Find a specialist</div>
+  </div>
+
+  <!-- ===== Overview ===== -->
+  <section class="panel active" id="panel-dashboard">
+    <div class="stat-grid">
+      <div class="stat"><div class="num" id="statReports">–</div><div class="label">Reports on file</div></div>
+      <div class="stat"><div class="num" id="statMedicines">–</div><div class="label">Active medicines</div></div>
+      <div class="stat"><div class="num" id="statLast">–</div><div class="label">Last report uploaded</div></div>
+    </div>
+
+    <h2 style="font-size:1.3rem; margin-bottom:14px;">Health trends</h2>
+    <div class="chart-grid" id="chartGrid">
+      <div class="empty-note">Upload a report with lab values (like hemoglobin or cholesterol) to see trends here.</div>
+    </div>
+  </section>
+
+  <!-- ===== Reports ===== -->
+  <section class="panel" id="panel-reports">
+    <div class="section-title">
+      <h2 style="font-size:1.3rem;">Your reports</h2>
+    </div>
+
+    <div class="upload-row">
+      <input type="file" id="reportFile" accept=".pdf,.txt,.png,.jpg,.jpeg">
+      <button class="btn" id="uploadBtn" type="button">Upload report</button>
+      <span id="uploadStatus" style="font-size:0.85rem; color:var(--ink-soft);"></span>
+    </div>
+
+    <div class="error-banner" id="reportsError"></div>
+    <div class="report-list" id="reportList"></div>
+  </section>
+
+  <!-- ===== Report detail (summary + chat) ===== -->
+  <section class="panel" id="panel-detail">
+    <button class="btn secondary" id="backToReports" type="button" style="margin-bottom:18px;">← Back to reports</button>
+
+    <div class="detail-grid">
+      <div class="card">
+        <h2 style="font-size:1.15rem;">Summary</h2>
+        <p id="detailStatusNote" style="color:var(--ink-soft); font-size:0.9rem;"></p>
+        <div id="detailSummary"></div>
+        <button class="btn secondary" id="retryBtn" type="button" style="display:none; margin-top:14px;">Retry analysis</button>
+
+        <div id="detailSpecialistBox" style="margin-top:18px; display:none;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:0.75rem; color:var(--ink-faint); margin-bottom:6px;">suggested specialist</div>
+          <span class="pill-result" id="detailSpecialist"></span>
+          <p style="color:var(--ink-soft); font-size:0.85rem; margin-top:8px;" id="detailSpecialistReason"></p>
+        </div>
+
+        <div class="disclaimer">This summary explains what's in the report — it is not a diagnosis. Share it with a doctor for medical advice.</div>
+      </div>
+
+      <div class="card">
+        <h2 style="font-size:1.15rem;">Ask about this report</h2>
+        <div class="chat-log" id="chatLog"></div>
+        <div class="chat-input-row">
+          <input type="text" id="chatInput" placeholder="e.g. What does my glucose level mean?">
+          <button class="btn" id="chatSend" type="button">Ask</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Reminders ===== -->
+  <section class="panel" id="panel-reminders">
+    <div class="section-title">
+      <h2 style="font-size:1.3rem;">Medicine reminders</h2>
+    </div>
+
+    <div class="email-banner off" id="emailBanner">
+      <span id="emailBannerText">Checking email settings...</span>
+      <button class="btn secondary" id="testEmailBtn" type="button" style="display:none;">Send test email</button>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <form id="medicineForm">
+        <div class="field-row">
+          <div class="field">
+            <label for="medName">Medicine name</label>
+            <input id="medName" type="text" required>
+          </div>
+          <div class="field">
+            <label for="medDosage">Dosage</label>
+            <input id="medDosage" type="text" placeholder="e.g. 500mg">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="medFrequency">Frequency</label>
+            <input id="medFrequency" type="text" placeholder="e.g. Twice daily">
+          </div>
+          <div class="field">
+            <label for="medTime">Time of day</label>
+            <input id="medTime" type="text" placeholder="e.g. 8:00 AM, 8:00 PM">
+            <div class="hint">Emails are sent at these times while MedAssist is running.</div>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="medStart">Start date</label>
+            <input id="medStart" type="date">
+          </div>
+          <div class="field">
+            <label for="medEnd">End date (optional)</label>
+            <input id="medEnd" type="date">
+          </div>
+        </div>
+        <div class="field">
+          <label for="medNotes">Notes</label>
+          <input id="medNotes" type="text" placeholder="Take with food, etc.">
+        </div>
+        <button class="btn" type="submit">Add reminder</button>
+      </form>
+    </div>
+
+    <div class="medicine-list" id="medicineList"></div>
+  </section>
+
+  <!-- ===== Specialist finder ===== -->
+  <section class="panel" id="panel-specialist">
+    <h2 style="font-size:1.3rem; margin-bottom:14px;">Find a specialist</h2>
+    <p style="color:var(--ink-soft); max-width:60ch; margin-bottom:18px;">
+      Describe your symptoms in plain language and we'll suggest which kind of specialist to consult.
+      This is a starting point, not a diagnosis.
+    </p>
+    <div class="card">
+      <div class="field">
+        <label for="symptomsInput">Symptoms</label>
+        <textarea id="symptomsInput" rows="4" placeholder="e.g. chest pain and shortness of breath when climbing stairs"></textarea>
+      </div>
+      <button class="btn" id="symptomsBtn" type="button">Get a recommendation</button>
+      <div id="symptomsResult" style="margin-top:18px;"></div>
+    </div>
+  </section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

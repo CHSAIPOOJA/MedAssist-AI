@@ -1,0 +1,72 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedAssist AI — Sign in</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="auth-shell">
+  <div class="auth-box">
+    <div class="auth-brand">
+      <div class="mark">MedAssist AI</div>
+      <div class="tag">Personalized healthcare assistant</div>
+    </div>
+
+    <div class="auth-toggle">
+      <button id="tabLogin" class="active" type="button">Sign in</button>
+      <button id="tabRegister" type="button">Create account</button>
+    </div>
+
+    <div class="error-banner" id="authError"></div>
+
+    <form id="loginForm">
+      <div class="field">
+        <label for="loginEmail">Email</label>
+        <input id="loginEmail" type="email" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="loginPassword">Password</label>
+        <input id="loginPassword" type="password" required autocomplete="current-password">
+      </div>
+      <button class="btn" type="submit" style="width:100%; justify-content:center;">Sign in</button>
+    </form>
+
+    <form id="registerForm" style="display:none;">
+      <div class="field">
+        <label for="regName">Full name</label>
+        <input id="regName" type="text" required autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="regEmail">Email</label>
+        <input id="regEmail" type="email" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="regPassword">Password</label>
+        <input id="regPassword" type="password" required minlength="8" autocomplete="new-password">
+      </div>
+      <button class="btn" type="submit" style="width:100%; justify-content:center;">Create account</button>
+    </form>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+</body>
+=======
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MedAssist AI</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+>>>>>>> b38b0f528c08ac42ccb66c5d80dd6214828eb516
+</html>
